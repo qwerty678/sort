@@ -1,0 +1,5 @@
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Release\Sort.exe.config
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Release\Sort.exe
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Release\Sort.pdb
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\obj\Release\Sort.exe
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\obj\Release\Sort.pdb

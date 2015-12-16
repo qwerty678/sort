@@ -1,0 +1,6 @@
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Debug\Sort.exe.config
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\obj\Debug\Sort.csprojResolveAssemblyReference.cache
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Debug\Sort.exe
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\bin\Debug\Sort.pdb
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\obj\Debug\Sort.exe
+c:\users\pawel\documents\visual studio 2015\Projects\Sort\Sort\obj\Debug\Sort.pdb
