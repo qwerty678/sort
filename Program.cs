@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
@@ -34,41 +31,46 @@ namespace Sort
 
             String[] fileNames = { "Small.csv", "Big.csv" };
             int[] counts = { COUNT1, COUNT2, COUNT3, COUNT4 };
+            int[] sorts = { MIN_TO_MAX, MAX_TO_MIN, RANDOM };
 
-            foreach(String fileName in fileNames)
+            foreach (String fileName in fileNames)
             {
                 foreach (int count in counts)
                 {
-                    File.AppendAllText(fileName, count.ToString() + ';');
-                    array = generateArray(COUNT1, MIN_TO_MAX, SMALL_E);
-                    stWatch.Start();
-                    Program.sortByChoose(array, COUNT1);
-                    stWatch.Stop();
-                    File.AppendAllText(fileName, "choose:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                    stWatch.Reset();
-                    stWatch.Start();
-                    Program.sortByInsert(array, COUNT1);
-                    stWatch.Stop();
-                    File.AppendAllText(fileName, "insert:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                    stWatch.Reset();
-                    stWatch.Start();
-                    Program.boobleSort(array, COUNT1);
-                    stWatch.Stop();
-                    File.AppendAllText(fileName, "booble:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                    stWatch.Reset();
-                    left = array[0]; right = array[COUNT1 - 1];
-                    stWatch.Start();
-                    Program.mergeSort(array, left, right);
-                    stWatch.Stop();
-                    File.AppendAllText(fileName, "merge:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                    stWatch.Reset();
-                    stWatch.Start();
-                    Program.quickSort(array, 0, COUNT1 - 1);
-                    stWatch.Stop();
-                    File.AppendAllText(fileName, "quick:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                    stWatch.Reset();
+                    foreach (int sort in sorts)
+                    {
+                        int entropy = (fileName == "Small.csv") ? SMALL_E : BIG_E;
+                        File.AppendAllText(fileName, count.ToString() + ';');
+                        array = generateArray(count, sort, entropy);
+                        stWatch.Start();
+                        Program.sortByChoose(array, count);
+                        stWatch.Stop();
+                        File.AppendAllText(fileName, "choose:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                        stWatch.Reset();
+                        stWatch.Start();
+                        Program.sortByInsert(array, count);
+                        stWatch.Stop();
+                        File.AppendAllText(fileName, "insert:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                        stWatch.Reset();
+                        stWatch.Start();
+                        Program.boobleSort(array, count);
+                        stWatch.Stop();
+                        File.AppendAllText(fileName, "booble:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                        stWatch.Reset();
+                        left = array[0]; right = array[count - 1];
+                        stWatch.Start();
+                        Program.mergeSort(array, left, right);
+                        stWatch.Stop();
+                        File.AppendAllText(fileName, "merge:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                        stWatch.Reset();
+                        stWatch.Start();
+                        Program.quickSort(array, 0, count - 1);
+                        stWatch.Stop();
+                        File.AppendAllText(fileName, "quick:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                        stWatch.Reset();
 
-                    File.AppendAllText(fileName, Environment.NewLine);
+                        File.AppendAllText(fileName, Environment.NewLine);
+                    }
                 }
             }
         }
