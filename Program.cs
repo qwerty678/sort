@@ -39,37 +39,65 @@ namespace Sort
                 {
                     foreach (int sort in sorts)
                     {
-                        int entropy = (fileName == "Small.csv") ? SMALL_E : BIG_E;
-                        File.AppendAllText(fileName, count.ToString() + ';');
-                        array = generateArray(count, sort, entropy);
-                        stWatch.Start();
-                        Program.sortByChoose(array, count);
-                        stWatch.Stop();
-                        File.AppendAllText(fileName, "choose:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                        stWatch.Reset();
-                        stWatch.Start();
-                        Program.sortByInsert(array, count);
-                        stWatch.Stop();
-                        File.AppendAllText(fileName, "insert:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                        stWatch.Reset();
-                        stWatch.Start();
-                        Program.boobleSort(array, count);
-                        stWatch.Stop();
-                        File.AppendAllText(fileName, "booble:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                        stWatch.Reset();
-                        left = array[0]; right = array[count - 1];
-                        stWatch.Start();
-                        Program.mergeSort(array, left, right);
-                        stWatch.Stop();
-                        File.AppendAllText(fileName, "merge:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                        stWatch.Reset();
-                        stWatch.Start();
-                        Program.quickSort(array, 0, count - 1);
-                        stWatch.Stop();
-                        File.AppendAllText(fileName, "quick:" + stWatch.ElapsedMilliseconds.ToString() + ';');
-                        stWatch.Reset();
-
-                        File.AppendAllText(fileName, Environment.NewLine);
+                            int entropy = (fileName == "Small.csv") ? SMALL_E : BIG_E;
+                            File.AppendAllText(fileName, count.ToString() + ';');
+                            array = generateArray(count, sort, entropy);
+                            try{
+                                stWatch.Start();
+                                Program.sortByChoose(array, count);
+                                stWatch.Stop();
+                                File.AppendAllText(fileName, "choose:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                                stWatch.Reset();
+                            }
+                            catch (StackOverflowException ex)
+                            {
+                                File.AppendAllText(fileName, "LINE OMITED STACK OVERFLOW" + Environment.NewLine);
+                            }
+                            try{
+                                stWatch.Start();
+                                Program.sortByInsert(array, count);
+                                stWatch.Stop();
+                                File.AppendAllText(fileName, "insert:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                                stWatch.Reset();
+                            }
+                        catch (StackOverflowException ex)
+                        {
+                            File.AppendAllText(fileName, "LINE OMITED STACK OVERFLOW" + Environment.NewLine);
+                        }
+                        try{
+                                stWatch.Start();
+                                Program.boobleSort(array, count);
+                                stWatch.Stop();
+                                File.AppendAllText(fileName, "booble:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                                stWatch.Reset();
+                            }
+                        catch (StackOverflowException ex)
+                        {
+                            File.AppendAllText(fileName, "LINE OMITED STACK OVERFLOW" + Environment.NewLine);
+                        }
+                        try{
+                                left = array[0]; right = array[count - 1];
+                                stWatch.Start();
+                                Program.mergeSort(array, left, right);
+                                stWatch.Stop();
+                                File.AppendAllText(fileName, "merge:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                                stWatch.Reset();
+                            }
+                        catch (StackOverflowException ex)
+                        {
+                            File.AppendAllText(fileName, "LINE OMITED STACK OVERFLOW" + Environment.NewLine);
+                        }
+                        try{
+                                stWatch.Start();
+                                //Program.quickSort(array, 0, count - 1);
+                                stWatch.Stop();
+                                File.AppendAllText(fileName, "quick:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                                stWatch.Reset();
+                            }catch(StackOverflowException ex)
+                        {
+                            File.AppendAllText(fileName, "LINE OMITED STACK OVERFLOW" + Environment.NewLine);
+                        }
+                            File.AppendAllText(fileName, Environment.NewLine);
                     }
                 }
             }
