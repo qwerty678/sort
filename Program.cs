@@ -30,155 +30,50 @@ namespace Sort
             int[] array;
             Stopwatch stWatch = new Stopwatch();
             StringBuilder csv = new StringBuilder();
+            int left, right;
 
+            String[] fileNames = { "Small.csv", "Big.csv" };
+            int[] counts = { COUNT1, COUNT2, COUNT3, COUNT4 };
 
-            stWatch.Start();
-            array = generateArray(COUNT1, MIN_TO_MAX, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString()+';');
-            stWatch.Reset();
+            foreach(String fileName in fileNames)
+            {
+                foreach (int count in counts)
+                {
+                    File.AppendAllText(fileName, count.ToString() + ';');
+                    array = generateArray(COUNT1, MIN_TO_MAX, SMALL_E);
+                    stWatch.Start();
+                    Program.sortByChoose(array, COUNT1);
+                    stWatch.Stop();
+                    File.AppendAllText(fileName, "choose:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                    stWatch.Reset();
+                    stWatch.Start();
+                    Program.sortByInsert(array, COUNT1);
+                    stWatch.Stop();
+                    File.AppendAllText(fileName, "insert:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                    stWatch.Reset();
+                    stWatch.Start();
+                    Program.boobleSort(array, COUNT1);
+                    stWatch.Stop();
+                    File.AppendAllText(fileName, "booble:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                    stWatch.Reset();
+                    left = array[0]; right = array[COUNT1 - 1];
+                    stWatch.Start();
+                    Program.mergeSort(array, left, right);
+                    stWatch.Stop();
+                    File.AppendAllText(fileName, "merge:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                    stWatch.Reset();
+                    stWatch.Start();
+                    Program.quickSort(array, 0, COUNT1 - 1);
+                    stWatch.Stop();
+                    File.AppendAllText(fileName, "quick:" + stWatch.ElapsedMilliseconds.ToString() + ';');
+                    stWatch.Reset();
 
-            stWatch.Start();
-            array = generateArray(COUNT1, MIN_TO_MAX, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString()+';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT1, MAX_TO_MIN, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT1, MAX_TO_MIN, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT1, RANDOM, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT1, RANDOM, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, MIN_TO_MAX, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, MIN_TO_MAX, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, MAX_TO_MIN, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, MAX_TO_MIN, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, RANDOM, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT2, RANDOM, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, MIN_TO_MAX, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, MIN_TO_MAX, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, MAX_TO_MIN, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, MAX_TO_MIN, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, RANDOM, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT3, RANDOM, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, MIN_TO_MAX, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, MIN_TO_MAX, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, MAX_TO_MIN, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, MAX_TO_MIN, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, RANDOM, SMALL_E);
-            stWatch.Stop();
-            File.AppendAllText ("Small.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
-            stWatch.Start();
-            array = generateArray(COUNT4, RANDOM, BIG_E);
-            stWatch.Stop();
-            File.AppendAllText ("Big.csv", stWatch.ElapsedMilliseconds.ToString() + ';');
-            stWatch.Reset();
-
+                    File.AppendAllText(fileName, Environment.NewLine);
+                }
+            }
         }
 
-        int[] sortByChoose(int[] array, int count)
+        public static int[] sortByChoose(int[] array, int count)
         {
             int i, j, k, temp;
 
@@ -196,7 +91,7 @@ namespace Sort
             return array;
         }
 
-        int[] sortByInsert(int[] array, int count)
+        public static int[] sortByInsert(int[] array, int count)
         {
             int i, j, x;
 
@@ -213,7 +108,7 @@ namespace Sort
             return array;
         }
 
-        int[] boobleSort(int[] array, int count)
+        public static int[] boobleSort(int[] array, int count)
         {
             int i, j, temp;
 
@@ -231,7 +126,7 @@ namespace Sort
             return array;
         }
 
-        static public void merge(int[] numbers, int left, int mid, int right)
+        public static void merge(int[] numbers, int left, int mid, int right)
         {
             int[] temp = new int[25];
             int i, left_end, num_elements, tmp_pos;
@@ -261,7 +156,7 @@ namespace Sort
             }
         }
 
-        static public void mergeSort(int[] numbers, int left, int right)
+        public static void mergeSort(int[] numbers, int left, int right)
         {
             int mid;
 
@@ -275,7 +170,7 @@ namespace Sort
             }
         }
 
-        int[] quickSort(int[] array, int leftIndex, int rightIndex)
+        public static int[] quickSort(int[] array, int leftIndex, int rightIndex)
         {
             int i, j, x, w;
 
